@@ -7,6 +7,12 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+// Essential environment variable check
+if (!process.env.JWT_SECRET) {
+  console.error("FATAL ERROR: JWT_SECRET is not defined in .env file.");
+  process.exit(1);
+}
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
