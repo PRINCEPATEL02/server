@@ -42,6 +42,11 @@ app.get("/api/messages/:roomId", async (req, res) => {
   }
 });
 
+// Add root route to fix "Cannot GET /" error on Render
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
+
 io.on("connection", (socket) => {
   socket.on("join_room", (roomId) => {
     socket.join(roomId);
